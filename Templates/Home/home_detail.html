@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Detail: {{detail.title}}</title>
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+    <link href="{% static 'assets/css/details.css' %}" rel="stylesheet">
+    <script>
+        var slug = "{{ data.slug }}";
+    </script>
+    <script src="{% static 'assets/js/rating.js' %}" defer></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <style>
+        .checked {
+            color: orange;
+        }
+
+        .my-btn {
+            background-color: inherit !important;
+            border: 0 !important;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="card">
+            <div class="container-fliud">
+                <div class="wrapper row">
+                    <div class="preview col-md-6">
+                        <div class="preview-pic tab-content">
+                            <div class="tab-pane active" id="pic-1"><img src="{{data.feature_image.url}}" /></div>
+                            <div class="tab-pane" id="pic-2"><img src="{{data.image2.url}}" /></div>
+                            <div class="tab-pane" id="pic-3"><img src="{{data.image3.url}}" /></div>
+                        </div>
+                        <ul class="preview-thumbnail nav nav-tabs">
+                            <li><a data-target="#pic-2" data-toggle="tab"><img src="{{data.image1.url}}" /></a>
+                            </li>
+                            <li><a data-target="#pic-3" data-toggle="tab"><img src="{{data.image2.url}}" /></a>
+                            </li>
+                            <li><a data-target="#pic-4" data-toggle="tab"><img src="{{data.image3.url}}" /></a>
+                            </li>
+                        </ul>
+    
+                    </div>
+                    <div class="details col-md-6">
+                        <h3 class="product-title">{{data.title}}</h3>
+                        <p class="product-description">{{data.description}}</p>
+                        <h4 class="price">current price: <span>{{data.price}}</span></h4>
+                        <br>
+                        <h4 align="left">Categories::</h4><br>
+                        {% for category in data.categories.all %}
+                        <li>{{category.title}}</li>
+                            {% endfor %}
+                            <br>
+                        <h4 align="left">Additional Features::</h4><br>
+                        {% for feature in data.additional_feature.all %}
+                        <li>{{feature.title}}</li>
+                        {% endfor %}
+                        <p>
+                            <h3>Extra Details::</h3>
+                            {{data.other_details}}
+                        </p>
+                        <h3>Payment Options::</h3>
+                        <li>Esewa</li>
+                        <li>Banking</li>
+                        <br><br>
+                        Rate Us:
+                        
+                        <div>
+                            <form class="rate-form" action="" method="POST">
+                                {% csrf_token %}
+                                <button type="submit" class="fa fa-star fa-1x my-btn" id="first"></button>
+                                <button type="submit" class="fa fa-star fa-1x my-btn" id="second"></button>
+                                <button type="submit" class="fa fa-star fa-1x my-btn" id="third"></button>
+                                <button type="submit" class="fa fa-star fa-1x my-btn" id="fourth"></button>
+                                <button type="submit" class="fa fa-star fa-1x my-btn" id="fifth"></button>
+                            </form>
+                        </div>
+                        
+                        <!-- Rate me -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+</body>
+</html>
+
+

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Categorical sorting
+{% endblock %}
+{% block home1 %}
+active
+{% endblock %}
+
+{% block home %}
+<!-- Page Content -->
+<!-- Banner Starts Here -->
+<!-- Banner Ends Here -->
+
+<div class="latest-products">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-heading">
+                    <h2>Categories: </h2>
+                    <a href="products.html">view all products <i class="fa fa-angle-right"></i></a>
+                </div>
+            </div>
+            {% for items in posts %}
+            <div class="col-lg-4 d-flex align-items-stretch">
+                <div class="product-item">
+                    <a href="{{items.get_absolute_url}}"><img src="/media/{{items.feature_image}}" alt="Images"
+                            style="width:350px;height:300px;"></a>
+                    <div class="down-content">
+                        <a href="{{items.get_absolute_url}}">
+                            <h4><b>{{items.title}}</b></h4>
+                        </a>
+                        <h6>{{items.price}}<b> Rs</b></h6>
+                        <p>{{items.description|slice:":200" }}...</p>
+                        <hr>
+                        <ul class="stars">
+                            <li><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                        </ul>
+                        <span>Reviews(24)</span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% endblock home %}

@@ -1,0 +1,17 @@
+
+    <form method="POST">
+        {% csrf_token %}
+        {{form.first_name}}
+        {{form.errors.first_name}}
+        {{form.last_name}}
+        {{form.errors.last_name}}
+        {{form.email}}
+        {{form.errors.email}}
+        {{form.username}}
+        {{form.errors.username}}
+        {{form.password}}
+        {{form.confirm_password}}
+        {{form.errors.confirm_password}}
+        <button type="submit"> Login</button>
+    </form>
+
