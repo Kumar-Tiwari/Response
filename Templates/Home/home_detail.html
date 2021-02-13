@@ -17,6 +17,7 @@
     <link href="{% static 'assets/css/details.css' %}" rel="stylesheet">
     <script>
         var slug = "{{ data.slug }}";
+        var ratings="{{data.ratings}}";
     </script>
     <script src="{% static 'assets/js/rating.js' %}" defer></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
@@ -76,8 +77,9 @@
                         <li>Banking</li>
                         <br><br>
                         Rate Us:
-                        
+                        {% if request.user.is_authenticated %}
                         <div>
+                            
                             <form class="rate-form" action="" method="POST">
                                 {% csrf_token %}
                                 <button type="submit" class="fa fa-star fa-1x my-btn" id="first"></button>
@@ -87,8 +89,35 @@
                                 <button type="submit" class="fa fa-star fa-1x my-btn" id="fifth"></button>
                             </form>
                         </div>
-                        
-                        <!-- Rate me -->
+                        {% else %}
+                        <div>
+                            
+                            <form class="rate-form" action="" method="POST">
+                                {% csrf_token %}
+                                <button type="submit" class="fa fa-star fa-1x my-btn" id="first" disabled></button>
+                                <button type="submit" class="fa fa-star fa-1x my-btn" id="second" disabled></button>
+                                <button type="submit" class="fa fa-star fa-1x my-btn" id="third" disabled></button>
+                                <button type="submit" class="fa fa-star fa-1x my-btn" id="fourth" disabled></button>
+                                <button type="submit" class="fa fa-star fa-1x my-btn" id="fifth" disabled></button>
+                            </form>
+                        </div>
+                        <script>
+                            const form = document.querySelector('.rate-form')
+                            const handleStarSelect = (size) => {
+                            const children = form.children
+                            for (let i=0; i < children.length; i++) {
+                                if(i < size) {
+                                  console.log(children[i])
+                                    children[i].classList.add('checked')
+                                } else {
+                                    children[i].classList.remove('checked')
+                                }
+                            }
+                          }
+                          handleStarSelect(ratings)
+                          </script>
+                        {% endif %}
+                                                <!-- Rate me -->
 
                 </div>
             </div>

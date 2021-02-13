@@ -8,6 +8,24 @@
 active
 {% endblock %}
 
+{% block head %}
+<script>
+  var rate=1
+  var ratings = [];
+</script>
+      <style>
+        .checked {
+            color: orange;
+        }
+
+        .my-btn {
+            background-color: inherit !important;
+            border: 0 !important;
+        }
+      </style>
+
+{% endblock %}
+
 {% block home %}
 
   <!-- Page Content -->
@@ -46,6 +64,10 @@ active
             </div>
           </div>
           {% for items in products %}
+          <script>
+            rate="{{items.ratings}}"
+            ratings.push(rate)
+          </script>
           <div class="col-lg-4 d-flex align-items-stretch">
             <div class="product-item">
               <a href="{{items.get_absolute_url}}"><img src="/media/{{items.feature_image}}" alt="Images" style="width:350px;height:300px;"></a>
@@ -60,19 +82,42 @@ active
                 </div>
                 <hr>
                 <p>{{items.description|slice:":200" }}...</p>
-                
+
                 <hr>
                 <div>
-                    <button type="submit" class="fa fa-star fa-1x my-btn" id="first"></button>
-                    <button type="submit" class="fa fa-star fa-1x my-btn" id="second"></button>
-                    <button type="submit" class="fa fa-star fa-1x my-btn" id="third"></button>
-                    <button type="submit" class="fa fa-star fa-1x my-btn" id="fourth"></button>
-                    <button type="submit" class="fa fa-star fa-1x my-btn" id="fifth"></button>
+                  <form class='rate-form'>
+                      <button class="fa fa-star fa-1x my-btn" id="first" disabled></span>
+                      <button  class="fa fa-star fa-1x my-btn" id="second" disabled></button>
+                      <button  class="fa fa-star fa-1x my-btn" id="third" disabled></button>
+                      <button  class="fa fa-star fa-1x my-btn" id="fourth" disabled></button>
+                      <button  class="fa fa-star fa-1x my-btn" id="fifth" disabled></button>
+                  </form>
               </div>
                 <span>Reviews(24)</span>
               </div>
             </div>
           </div>
           {% endfor %}
+          <script>
+            const forms = document.querySelectorAll('.rate-form')
+            const handleStarSelect = (size,formy) => {
+            const children = formy.children
+            for (let i=0; i < children.length; i++) {
+                if(i < size) {
+                  console.log(children[i])
+                    children[i].classList.add('checked')
+                } else {
+                    children[i].classList.remove('checked')
+                }
+            }
+          }
+
+            console.log(forms)
+            for(let x=0;x<6;x++){
+              handleStarSelect(ratings[x],forms[x])
+            }
+
+          </script>
+
 {% endblock home %}
 

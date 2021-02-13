@@ -1,4 +1,4 @@
-// console.log('hello world')
+
 
 // get all the stars
 const one = document.getElementById('first')
@@ -14,8 +14,7 @@ const csrf = document.getElementsByName('csrfmiddlewaretoken')
 
 const handleStarSelect = (size) => {
     const children = form.children
-    console.log(children[0])
-    for (let i=0; i < children.length; i++) {
+    for (let i=0; i < children.length ; i++) {
         if(i <= size) {
             children[i].classList.add('checked')
         } else {
@@ -23,7 +22,6 @@ const handleStarSelect = (size) => {
         }
     }
 }
-
 const handleSelect = (selection) => {
     switch(selection){
         case 'first': {

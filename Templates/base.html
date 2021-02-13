@@ -9,8 +9,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <link href="{% static 'https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap' %}" rel="stylesheet">
+    {% block head %}
 
+    {% endblock %}
     <title>
     {% block title %}
     {% endblock title %}
@@ -31,7 +32,6 @@ https://templatemo.com/tm-546-sixteen-clothing
     <link rel="stylesheet" href="{% static 'assets/css/templatemo-sixteen.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/owl.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/custom.css' %}">
-    <script src="{% static 'assets/js/list_product.js' %}"></script>
   </head>
   <body>
 
